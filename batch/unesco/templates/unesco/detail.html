@@ -1,0 +1,16 @@
+<h1>{{ site.name }}</h1>
+
+<ul>
+    <li> <b> Description : </b>  {{ site.description }}</li>
+    <li> <b> Justification : </b> {{ site.justification }}</li>
+    <li> <b> Year : </b> {{ site.year }}</li>
+    <li> <b> Longitude : </b> {{ site.longitude }}</li>
+    <li> <b> Latitude : </b> {{ site.latitude }}</li>
+    <li> <b> Area in Hectares : </b> {{ site.area_hectares }}</li>
+    <li> <b> Category : </b> {{ site.category }}</li>
+    <li> <b>State : </b> {{ site.state }}</li>
+    <li> <b>Region : </b> {{ site.region }}</li>
+    <li> <b>Iso : </b> {{ site.iso }}</li>
+</ul>
+
+<a href="{% url 'unesco:index' %}">Index Page</a>

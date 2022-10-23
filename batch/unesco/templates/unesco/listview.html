@@ -1,0 +1,12 @@
+{% if heritage_site_list %}
+    <ul>
+    {% for site in heritage_site_list %}
+    <li><a href="{% url 'unesco:detail' site.id %}">{{ site.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'unesco:index' %}">Link to Index Page</a>
+
+{% else %}
+    <p>No heritage sites are available.</p>
+{% endif %}

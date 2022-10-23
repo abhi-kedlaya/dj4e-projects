@@ -1,0 +1,63 @@
+    <ul>
+    <li><a href="{% url 'unesco:sites' %}">List of all Unesco Heritage Sites</a></li>
+    <li><strong>Unesco Heritage Sites grouped by category</strong></li>
+
+        {% if heritage_sites_grouped_by_category %}
+            <ul>
+                {% for entry in heritage_sites_grouped_by_category %}
+                    <ul>
+                        <li>Category : <a href="{% url 'unesco:sites' %}?groupby=category&value={{entry.category__name}}">{{ entry.category__name }}</a> Count : {{entry.total}} </li>
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Heritage sites grouped by category are unavailable.</p>
+        {% endif %}
+
+    <li><strong>Unesco Heritage Sites grouped by region</strong></li>
+
+        {% if heritage_sites_grouped_by_region %}
+            <ul>
+                {% for entry in heritage_sites_grouped_by_region %}
+                    <ul>
+                        <li>Region : <a href="{% url 'unesco:sites' %}?groupby=region&value={{entry.region__name}}"> {{ entry.region__name }}</a> Count : {{entry.total}} </li>
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Heritage sites grouped by region are unavailable.</p>
+        {% endif %}
+   
+    <li><strong>Unesco Heritage Sites grouped by year</strong></li>
+
+        {% if heritage_sites_grouped_by_year %}
+            <ul>
+                {% for entry in heritage_sites_grouped_by_year %}
+                    <ul>
+                        <li>Year : <a href="{% url 'unesco:sites' %}?value={{entry.year}}&groupby=year">{{entry.year}}</a> Count : {{entry.total}} </li>
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Heritage sites grouped by state are unavailable.</p>
+        {% endif %}
+
+    <li><strong>Unesco Heritage Sites grouped by state</strong></li>
+
+        {% if heritage_sites_grouped_by_state %}
+            <ul>
+                {% for entry in heritage_sites_grouped_by_state %}
+                    <ul>
+                        <li>State : <a href="{% url 'unesco:sites' %}?groupby=state&value={{entry.state__name}}">{{ entry.state__name }}</a> Count : {{entry.total}} </li>
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Heritage sites grouped by state are unavailable.</p>
+        {% endif %}
+    
+    </ul>
