@@ -9,7 +9,6 @@ from autos.models import Auto, Make
 
 # Create your views here.
 
-
 class AutosListView(LoginRequiredMixin, View):
     def get(self, request):
         mc = Make.objects.all().count()
@@ -18,95 +17,31 @@ class AutosListView(LoginRequiredMixin, View):
         ctx = {'make_count': mc, 'auto_list': al}
         return render(request, 'autos/auto_list.html', ctx)
 
-
 class MakesListView(LoginRequiredMixin, View):
     def get(self, request):
         ml = Make.objects.all()
         ctx = {'make_list': ml}
         return render(request, 'autos/make_list.html', ctx)
 
-
 # We use reverse_lazy() because we are in "constructor attribute" code
 # that is run before urls.py is completely loaded
-
-"""class MakeCreate(LoginRequiredMixin, View):
-    template = 'autos/make_form.html'
-    success_url = reverse_lazy('autos:all')
-
-    def get(self, request):
-        form = MakeForm()
-        ctx = {'form': form}
-        return render(request, self.template, ctx)
-
-    def post(self, request):
-        form = MakeForm(request.POST)
-        if not form.is_valid():
-            ctx = {'form': form}
-            return render(request, self.template, ctx)
-
-        make = form.save()
-        return redirect(self.success_url)
-"""
-
 class MakeCreate(LoginRequiredMixin, CreateView):
     model = Make
     fields = '__all__'
-    success_url = reverse_lazy('autos:all')
-
+    success_url = reverse_lazy('autos:make_list')
 
 # MakeUpdate has code to implement the get/post/validate/store flow
 # AutoUpdate (below) is doing the same thing with no code
 # and no form by extending UpdateView
-"""
-class MakeUpdate(LoginRequiredMixin, View):
-    model = Make
-    success_url = reverse_lazy('autos:all')
-    template = 'autos/make_form.html'
-
-    def get(self, request, pk):
-        make = get_object_or_404(self.model, pk=pk)
-        form = MakeForm(instance=make)
-        ctx = {'form': form}
-        return render(request, self.template, ctx)
-
-    def post(self, request, pk):
-        make = get_object_or_404(self.model, pk=pk)
-        form = MakeForm(request.POST, instance=make)
-        if not form.is_valid():
-            ctx = {'form': form}
-            return render(request, self.template, ctx)
-
-        form.save()
-        return redirect(self.success_url)
-"""
-
 class MakeUpdate(LoginRequiredMixin, UpdateView):
     model = Make
     fields = '__all__'
-    success_url = reverse_lazy('autos:all')
-
-"""
-class MakeDelete(LoginRequiredMixin, View):
-    model = Make
-    success_url = reverse_lazy('autos:all')
-    template = 'autos/make_confirm_delete.html'
-
-    def get(self, request, pk):
-        make = get_object_or_404(self.model, pk=pk)
-        form = MakeForm(instance=make)
-        ctx = {'make': make}
-        return render(request, self.template, ctx)
-
-    def post(self, request, pk):
-        make = get_object_or_404(self.model, pk=pk)
-        make.delete()
-        return redirect(self.success_url)
-"""
+    success_url = reverse_lazy('autos:make_list')
 
 class MakeDelete(LoginRequiredMixin, DeleteView):
     model = Make
     fields = '__all__'
-    success_url = reverse_lazy('autos:all')
+    success_url = reverse_lazy('autos:make_list')
 
 # Take the easy way out on the main table
 # These views do not need a form because CreateView, etc.

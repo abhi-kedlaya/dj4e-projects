@@ -27,4 +27,12 @@
   <a href="{% url 'autos:make_list' %}">View makes</a> ({{ make_count }}) | 
     <a href="{% url 'autos:make_create' %}">Add a make</a>
   </p>
+
+<p>
+  {% if user.is_authenticated %}
+      <p>Authenticated as {{ user.get_full_name }}
+      </p>
+      <p>You can <a href="/accounts/logout">Logout</a></p>
+  {% endif %}
+</p>
 {% endblock %}
