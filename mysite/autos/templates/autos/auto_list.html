@@ -6,10 +6,9 @@
   <ul>
     {% for auto in auto_list %}
       <li>
-          {{ auto.nickname }} ({{ auto.make }})
+          {{ auto.nickname }} ({{ auto.make }}) {{ auto.comments}} ({{auto.mileage}} kms)
           (<a href="{% url 'autos:auto_update' auto.id %}">Update</a> |
           <a href="{% url 'autos:auto_delete' auto.id %}">Delete</a>) <br/>
-          {{ auto.comments }} ({{ auto.mileage }} miles)
       </li>
     {% endfor %}
   </ul>
@@ -32,7 +31,7 @@
   {% if user.is_authenticated %}
       <p>Authenticated as {{ user.get_full_name }}
       </p>
-      <p>You can <a href="/accounts/logout">Logout</a></p>
+      <p> You can <a href="/accounts/logout?next=/"> Logout</a>
   {% endif %}
 </p>
 {% endblock %}
