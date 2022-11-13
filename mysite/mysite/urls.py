@@ -27,6 +27,8 @@ urlpatterns = [
         path('',TemplateView.as_view(template_name = 'home/main.html')),
         path('hello/', include('hello.url')),
         path('polls/', include('polls.url')),
+        path('autos/', include('autos.url')),
+        path('accounts/', include('django.contrib.auth.urls')),
         path('admin/', admin.site.urls),
         re_path(r'^site/(?P<path>.*)$', serve,
             {'document_root': SITE_ROOT, 'show_indexes': True},
