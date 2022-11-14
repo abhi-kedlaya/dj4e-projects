@@ -28,6 +28,7 @@ urlpatterns = [
         path('hello/', include('hello.url')),
         path('polls/', include('polls.url')),
         path('autos/', include('autos.url')),
+        path('cats/', include('cats.url')),
         path('accounts/', include('django.contrib.auth.urls')),
         path('admin/', admin.site.urls),
         re_path(r'^site/(?P<path>.*)$', serve,
